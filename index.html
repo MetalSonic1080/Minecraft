@@ -2,39 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Theater Screen</title>
+    <title>Theater Search</title>
     <style>
-        body { 
-            margin: 0; 
-            padding: 0; 
-            background: black; 
-            overflow: hidden; 
-        }
-        .video-container { 
-            padding-bottom: 56.25%; 
-            position: relative; 
-            height: 0; 
-            overflow: hidden; 
-        }
-        .video-container iframe { 
-            position: absolute; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            border: 0; 
-        }
+        body { margin: 0; background: black; color: white; font-family: sans-serif; }
+        .search-container { padding: 10px; text-align: center; }
+        input { width: 60%; padding: 10px; border-radius: 5px; border: none; }
+        button { padding: 10px 20px; cursor: pointer; }
+        .video-container { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; }
+        iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
     </style>
 </head>
 <body>
 
-    <div class="video-container">
-        <iframe 
-            src="https://www.youtube.com/embed/PKtnafFtfEo?autoplay=1" 
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen" 
-            allowfullscreen>
-        </iframe>
+    <div class="search-container">
+        <input type="text" id="vidInput" placeholder="Enter YouTube Video ID (e.g., PKtnafFtfEo)">
+        <button onclick="updateVideo()">Play</button>
     </div>
+
+    <div class="video-container">
+        <iframe id="videoPlayer" src="https://www.youtube.com/embed/PKtnafFtfEo?autoplay=1" allowfullscreen></iframe>
+    </div>
+
+    <script>
+        function updateVideo() {
+            var id = document.getElementById("vidInput").value;
+            var player = document.getElementById("videoPlayer");
+            player.src = "https://www.youtube.com/embed/" + id + "?autoplay=1";
+        }
+    </script>
 
 </body>
 </html>
